@@ -1,0 +1,12 @@
+services:
+  service-discovery:
+    build:
+      context: .
+      target: builder
+    command: pnpm run dev
+    volumes:
+      - ./app:/app
+      - service-discovery-node-modules:/app/node_modules
+
+volumes:
+  service-discovery-node-modules:

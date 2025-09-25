@@ -1,0 +1,31 @@
+services:
+  service-discovery:
+    build:
+      context: .
+      target: production
+    depends_on:
+      - service-discovery-redis
+    environment:
+      - PORT=3099
+      - HOST=service-discovery
+      - REDIS_HOST=service-discovery-redis
+      - REDIS_PORT=6379
+      - SERVICE_EXPIRATION_TTL=35 # seconds
+    networks:
+      - service-discovery-network
+    restart: unless-stopped
+
+  service-discovery-redis:
+    image: redis:latest
+    volumes:
+      - service-discovery-redis-data:/data
+    networks:
+      - service-discovery-network
+    restart: unless-stopped
+
+networks:
+  service-discovery-network:
+    driver: bridge
+
+volumes:
+  service-discovery-redis-data:

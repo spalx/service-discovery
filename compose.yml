@@ -5,12 +5,8 @@ services:
       target: production
     depends_on:
       - service-discovery-redis
-    environment:
-      - PORT=3099
-      - HOST=service-discovery
-      - REDIS_HOST=service-discovery-redis
-      - REDIS_PORT=6379
-      - SERVICE_EXPIRATION_TTL=35 # seconds
+    env_file:
+      - .env
     networks:
       - service-discovery-network
     restart: unless-stopped

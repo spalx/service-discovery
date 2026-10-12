@@ -4,9 +4,9 @@ import {
   ServiceDTO,
   ServiceDTOSchema,
   DeregisterServiceDTO,
-  DeregisterServiceDTOSchema
-} from 'service-discovery-pkg';
-import { CorrelatedMessage, transportService } from 'transport-pkg';
+  DeregisterServiceDTOSchema,
+} from '@spalx/service-discovery-pkg';
+import { CorrelatedMessage } from '@spalx/transport-pkg';
 
 import serviceDiscoveryService from '@/services/service-discovery.service';
 

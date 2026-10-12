@@ -1,5 +1,5 @@
-import { ServiceDTO } from 'service-discovery-pkg';
-import { CorrelatedMessage } from 'transport-pkg';
+import { ServiceDTO } from '@spalx/service-discovery-pkg';
+import { CorrelatedMessage } from '@spalx/transport-pkg';
 
 import BaseCommand from '@/commands/base.command';
 import serviceDiscoveryController from '@/controllers/service-discovery.controller';

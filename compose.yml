@@ -1,5 +1,6 @@
 services:
   service-discovery:
+    mem_limit: 1g
     build:
       context: .
       target: production
@@ -12,6 +13,7 @@ services:
     restart: unless-stopped
 
   service-discovery-redis:
+    mem_limit: 512m
     image: redis:latest
     volumes:
       - service-discovery-redis-data:/data

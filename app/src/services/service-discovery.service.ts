@@ -1,6 +1,5 @@
-import { GetServiceDTO, ServiceDTO, DeregisterServiceDTO } from 'service-discovery-pkg';
-import { NotFoundError } from 'rest-pkg';
-import { logger } from 'common-loggers-pkg';
+import { GetServiceDTO, ServiceDTO, DeregisterServiceDTO } from '@spalx/service-discovery-pkg';
+import { NotFoundError } from '@spalx/rest-pkg';
 
 import { redis } from '@/config/db.config';
 import appConfig from '@/config/app.config';
@@ -18,7 +17,7 @@ class ServiceDiscoveryService {
       }
 
       if (attempt < maxRetries) {
-        await new Promise(resolve => setTimeout(resolve, retryDelay));
+        await new Promise((resolve) => setTimeout(resolve, retryDelay));
       }
     }
 

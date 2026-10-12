@@ -1,12 +1,16 @@
-import { IAppPkg, AppRunPriority } from 'app-life-cycle-pkg';
-import { transportService, TransportAdapterName, CorrelatedMessage } from 'transport-pkg';
-import { HTTPTransportAdapter } from 'http-transport-adapter';
-import { ServiceDiscoveryAction } from 'service-discovery-pkg';
+import { IAppPkg, AppRunPriority } from '@spalx/app-life-cycle-pkg';
+import { transportService, TransportAdapterName, CorrelatedMessage } from '@spalx/transport-pkg';
+import { HTTPTransportAdapter } from '@spalx/http-transport-adapter';
+import { ServiceDiscoveryAction } from '@spalx/service-discovery-pkg';
 
 import appConfig from '@/config/app.config';
 import BaseCommand from '@/commands/base.command';
-import { GetServiceCommand, RegisterServiceCommand, DeregisterServiceCommand, ServiceHeartbeatCommand } from '@/commands/service-discovery';
-import serviceDiscoveryService from '@/services/service-discovery.service';
+import {
+  GetServiceCommand,
+  RegisterServiceCommand,
+  DeregisterServiceCommand,
+  ServiceHeartbeatCommand,
+} from '@/commands/service-discovery';
 
 class App implements IAppPkg {
   private httpTransportAdapter: HTTPTransportAdapter;
@@ -28,10 +32,7 @@ class App implements IAppPkg {
   }
 
   getDependencies(): IAppPkg[] {
-    return [
-      transportService,
-      this.httpTransportAdapter
-    ];
+    return [transportService, this.httpTransportAdapter];
   }
 
   private setActionHandlers() {
@@ -44,7 +45,7 @@ class App implements IAppPkg {
   private setActionHandler(action: string, cmd: BaseCommand, returns = true): void {
     transportService.setActionHandler(action, async (req: CorrelatedMessage) => {
       const res = await cmd.execute(req);
-      return returns ? res as object : {};
+      return returns ? (res as object) : {};
     });
   }
 }

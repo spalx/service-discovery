@@ -7,3 +7,5 @@ minimumReleaseAgeExclude:
   - '@spalx/transport-pkg'
 allowBuilds:
   msgpackr-extract: true
+  '@parcel/watcher': false
+  unrs-resolver: false
